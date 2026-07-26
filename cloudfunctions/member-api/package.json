@@ -1,0 +1,15 @@
+{
+  "name": "member-api",
+  "version": "1.0.0",
+  "description": "飞盘队成员名册 CloudBase 云函数",
+  "private": true,
+  "main": "index.js",
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@cloudbase/node-sdk": "^3.18.3"
+  }
+}

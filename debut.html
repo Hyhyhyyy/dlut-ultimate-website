@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta
+      name="description"
+      content="BLACK ANTS 成员首次代表社团参加正式比赛登记入口。"
+    />
+    <title>首次比赛登记｜BLACK ANTS</title>
+    <link rel="stylesheet" href="./debut.css" />
+    <script type="module" src="./debut.js"></script>
+  </head>
+  <body>
+    <header class="debut-header">
+      <a class="debut-brand" href="./" aria-label="返回飞盘队网站">
+        <img src="./assets/team-logo.png" alt="" />
+        <span>
+          <strong>BLACK ANTS</strong>
+          <small>首次正式比赛登记</small>
+        </span>
+      </a>
+      <a class="back-link" href="./?slide=5">查看队员名册</a>
+    </header>
+
+    <main class="debut-main">
+      <section class="debut-intro" aria-labelledby="debut-title">
+        <p class="debut-kicker">FIRST GAME · NEW CHAPTER</p>
+        <h1 id="debut-title">第一次为社团上场，<br />值得被认真记住。</h1>
+        <p>
+          当你第一次代表社团参加正式比赛后，在这里留下比赛记录。
+          管理员确认后，你会进入公开名册中的“黑蚁飞盘队”分区，并标注入队年份。
+        </p>
+        <ol>
+          <li><strong>01</strong><span>姓名与昵称需和已审核名册完全对应</span></li>
+          <li><strong>02</strong><span>记录首次正式比赛的年份与名称</span></li>
+          <li><strong>03</strong><span>审核通过后，正式进入黑蚁飞盘队分区</span></li>
+        </ol>
+        <div class="debut-definition">
+          <span>什么可以登记？</span>
+          <p>新生赛、校赛、校 HAT 赛，以及代表社团参加的社会赛事等正式比赛。</p>
+        </div>
+      </section>
+
+      <section class="debut-panel" aria-labelledby="debut-form-title">
+        <div class="debut-panel-heading">
+          <span>ROSTER PROMOTION</span>
+          <h2 id="debut-form-title">登记首次比赛</h2>
+          <p>本入口仅供已经出现在公开名册中的成员使用。</p>
+        </div>
+
+        <form id="debut-form" class="debut-form">
+          <div class="identity-notice">
+            <strong>请使用成员登记时的信息</strong>
+            <span>真实姓名仅供后台匹配与审核，不会在公开名册展示。</span>
+          </div>
+
+          <div class="form-row">
+            <label>
+              <span>真实姓名 <small>仅管理员可见</small></span>
+              <input
+                name="realName"
+                type="text"
+                maxlength="20"
+                autocomplete="name"
+                placeholder="与成员登记一致"
+                required
+              />
+            </label>
+            <label>
+              <span>展示昵称 <small>公开名册昵称</small></span>
+              <input
+                name="displayName"
+                type="text"
+                maxlength="20"
+                autocomplete="nickname"
+                placeholder="与公开名册一致"
+                required
+              />
+            </label>
+          </div>
+
+          <label>
+            <span>首次参赛年份 <small>将作为“入队年份”展示</small></span>
+            <span class="year-control">
+              <input
+                name="competitionYear"
+                type="text"
+                maxlength="4"
+                inputmode="numeric"
+                pattern="20[0-9]{2}"
+                placeholder="例如：2026"
+                title="请输入四位数字年份，例如 2026"
+                required
+              />
+              <b aria-hidden="true">年</b>
+            </span>
+          </label>
+
+          <label>
+            <span>比赛名称 / 备注</span>
+            <input
+              name="competitionName"
+              type="text"
+              minlength="2"
+              maxlength="40"
+              placeholder="例如：新生赛、校赛、校 HAT 赛、社会赛"
+              required
+            />
+          </label>
+
+          <div class="example-list" aria-label="比赛备注示例">
+            <span>2026年新生赛</span>
+            <span>2026年校赛</span>
+            <span>2026年校 HAT 赛</span>
+            <span>2026年社会赛</span>
+          </div>
+
+          <label class="form-trap" aria-hidden="true">
+            <span>网站</span>
+            <input name="website" type="text" tabindex="-1" autocomplete="off" />
+          </label>
+
+          <label class="debut-consent">
+            <input name="consent" type="checkbox" required />
+            <span>
+              我确认以上为本人首次代表社团参加正式比赛的真实记录，并同意审核通过后公开展示比赛名称与入队年份。
+            </span>
+          </label>
+
+          <button id="debut-submit" type="submit">
+            <span>提交管理员确认</span>
+            <svg viewBox="0 0 44 20" aria-hidden="true">
+              <path d="M2 10h36M30 3l8 7-8 7"></path>
+            </svg>
+          </button>
+          <p id="debut-form-status" class="debut-status" role="status"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <span>BLACK ANTS FLYING DISC TEAM</span>
+      <span>第一次上场，是并肩作战的新起点</span>
+    </footer>
+  </body>
+</html>

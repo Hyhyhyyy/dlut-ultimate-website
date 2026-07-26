@@ -1,0 +1,8 @@
+{
+  "*": {
+    "invoke": false
+  },
+  "member-api": {
+    "invoke": true
+  }
+}

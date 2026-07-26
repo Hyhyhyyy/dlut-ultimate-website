@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="description" content="BLACK ANTS 飞盘队成员名册审核后台。" />
+    <title>成员审核｜BLACK ANTS</title>
+    <link rel="stylesheet" href="./admin.css" />
+    <script type="module" src="./admin.js"></script>
+  </head>
+  <body>
+    <header class="admin-header">
+      <a class="admin-brand" href="./" aria-label="返回飞盘队网站">
+        <img src="./assets/team-logo.png" alt="" />
+        <span>
+          <strong>BLACK ANTS</strong>
+          <small>成员名册审核后台</small>
+        </span>
+      </a>
+      <a class="back-link" href="./">返回网站</a>
+    </header>
+
+    <main class="admin-main">
+      <section id="login-panel" class="login-panel" aria-labelledby="login-title">
+        <p class="admin-kicker">ROSTER CONTROL</p>
+        <h1 id="login-title">管理员登录</h1>
+        <p>仅指定管理员账号可以审核或删除公开成员资料。</p>
+
+        <form id="login-form" class="login-form">
+          <label>
+            <span>用户名</span>
+            <input
+              name="username"
+              type="text"
+              autocomplete="username"
+              minlength="5"
+              maxlength="24"
+              required
+            />
+          </label>
+          <label>
+            <span>密码</span>
+            <input
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              minlength="8"
+              required
+            />
+          </label>
+          <button type="submit">安全登录</button>
+          <p id="login-status" class="admin-status" role="status"></p>
+        </form>
+      </section>
+
+      <section id="review-panel" class="review-panel" aria-labelledby="review-title" hidden>
+        <div class="review-heading">
+          <div>
+            <p class="admin-kicker">MEMBER REVIEW</p>
+            <h1 id="review-title">成员名册</h1>
+            <p><strong id="queue-count">0</strong> 条记录</p>
+          </div>
+          <div class="review-actions">
+            <button id="refresh-button" type="button">刷新</button>
+            <button id="logout-button" class="quiet-button" type="button">退出登录</button>
+          </div>
+        </div>
+
+        <div class="resource-tabs" role="tablist" aria-label="审核内容">
+          <button
+            id="members-resource-tab"
+            class="is-active"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            data-resource="members"
+          >
+            成员资料
+          </button>
+          <button
+            id="photos-resource-tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-resource="photos"
+          >
+            日常照片
+          </button>
+          <button
+            id="debuts-resource-tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-resource="debuts"
+          >
+            首次比赛
+          </button>
+        </div>
+
+        <div class="review-tabs" role="tablist" aria-label="审核状态">
+          <button
+            id="pending-tab"
+            class="is-active"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            data-status="pending"
+          >
+            待审核
+          </button>
+          <button
+            id="approved-tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-status="approved"
+          >
+            已公开
+          </button>
+        </div>
+
+        <p id="review-status" class="admin-status" role="status"></p>
+        <div id="review-list" class="review-list" aria-live="polite" aria-busy="false"></div>
+      </section>
+    </main>
+
+    <footer class="admin-footer">
+      <span>BLACK ANTS FLYING DISC TEAM</span>
+      <span>成员资料、照片与首次比赛记录统一审核</span>
+    </footer>
+  </body>
+</html>

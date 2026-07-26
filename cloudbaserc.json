@@ -1,0 +1,44 @@
+{
+  "version": "2.0",
+  "envId": "{{env.VITE_CLOUDBASE_ENV_ID}}",
+  "region": "ap-shanghai",
+  "functionRoot": "./cloudfunctions",
+  "functions": [
+    {
+      "name": "member-api",
+      "handler": "index.main",
+      "runtime": "Nodejs20.19",
+      "timeout": 15,
+      "memorySize": 256,
+      "installDependency": true,
+      "aclRule": {
+        "invoke": true
+      },
+      "envVariables": {
+        "ADMIN_UID": "{{env.ADMIN_UID}}",
+        "MEMBERS_COLLECTION": "members",
+        "PHOTOS_COLLECTION": "team_photos",
+        "DEBUTS_COLLECTION": "team_debuts",
+        "IDENTITY_CLAIMS_COLLECTION": "member_identity_claims"
+      }
+    }
+  ],
+  "app": {
+    "serviceName": "dut-ultimate-website",
+    "root": "./",
+    "framework": "vite",
+    "installCommand": "npm ci",
+    "buildCommand": "npm run build",
+    "outputDir": "dist",
+    "deployPath": "/",
+    "envVariables": {
+      "VITE_CLOUDBASE_ENV_ID": "{{env.VITE_CLOUDBASE_ENV_ID}}",
+      "VITE_CLOUDBASE_ACCESS_KEY": "{{env.VITE_CLOUDBASE_ACCESS_KEY}}"
+    },
+    "ignore": [
+      "cloudfunctions/**",
+      "tests/**",
+      "docs/**"
+    ]
+  }
+}

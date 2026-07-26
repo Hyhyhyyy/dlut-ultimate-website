@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta
+      name="description"
+      content="上传 BLACK ANTS 飞盘队训练与比赛日常照片，审核通过后展示在公开图库。"
+    />
+    <title>上传日常照片｜BLACK ANTS</title>
+    <link rel="stylesheet" href="./photos.css" />
+    <script type="module" src="./photos.js"></script>
+  </head>
+  <body>
+    <header class="photo-header">
+      <a class="photo-brand" href="./" aria-label="返回飞盘队网站">
+        <img src="./assets/team-logo.png" alt="" />
+        <span>
+          <strong>BLACK ANTS</strong>
+          <small>飞盘队日常图库</small>
+        </span>
+      </a>
+      <a class="back-link" href="./?slide=4">查看公开图库</a>
+    </header>
+
+    <main class="photo-main">
+      <section class="photo-intro" aria-labelledby="photo-title">
+        <p class="photo-kicker">SHARE THE MOMENT</p>
+        <h1 id="photo-title">把今天的快乐，<br />留在队伍相册里。</h1>
+        <p>
+          欢迎上传训练、比赛与团建中的精彩瞬间。照片经管理员审核后，
+          会出现在飞盘队公开图库中。
+        </p>
+        <ul>
+          <li><strong>01</strong><span>选择清晰、友好的队伍日常照片</span></li>
+          <li><strong>02</strong><span>写下一句话，记录这一刻</span></li>
+          <li><strong>03</strong><span>审核通过后与所有队友分享</span></li>
+        </ul>
+      </section>
+
+      <section class="upload-panel" aria-labelledby="upload-form-title">
+        <div class="upload-heading">
+          <span>PHOTO DROP</span>
+          <h2 id="upload-form-title">上传一张照片</h2>
+          <p>每次提交一张，可不限次数继续上传。</p>
+        </div>
+
+        <form id="photo-form" class="photo-form">
+          <div class="form-row">
+            <label>
+              <span>上传者昵称</span>
+              <input
+                name="creditName"
+                type="text"
+                maxlength="20"
+                autocomplete="nickname"
+                placeholder="用于照片署名"
+                required
+              />
+            </label>
+            <label>
+              <span>拍摄日期</span>
+              <input name="photoDate" type="date" required />
+            </label>
+          </div>
+
+          <label>
+            <span>照片说明</span>
+            <textarea
+              name="caption"
+              maxlength="80"
+              rows="3"
+              placeholder="例如：第一次夜训结束后的大合影"
+              required
+            ></textarea>
+          </label>
+
+          <label class="photo-file-input">
+            <span>选择照片</span>
+            <input
+              id="gallery-photo-input"
+              name="image"
+              type="file"
+              accept="image/png,image/jpeg,image/webp"
+              required
+            />
+            <span class="photo-file-control">
+              <b>选择 JPG / PNG / WEBP</b>
+              <small>原图不超过 10 MB，上传前会自动压缩</small>
+            </span>
+          </label>
+
+          <div id="photo-preview" class="photo-preview" hidden>
+            <img id="photo-preview-image" alt="待上传照片预览" />
+            <span id="photo-file-name"></span>
+          </div>
+
+          <label class="form-trap" aria-hidden="true">
+            <span>网站</span>
+            <input name="website" type="text" tabindex="-1" autocomplete="off" />
+          </label>
+
+          <label class="photo-consent">
+            <input name="consent" type="checkbox" required />
+            <span>
+              我确认有权分享该照片，并同意审核通过后在飞盘队公开图库中展示照片、说明、日期与署名。
+            </span>
+          </label>
+
+          <button id="photo-submit" type="submit">
+            <span>提交照片审核</span>
+            <svg viewBox="0 0 44 20" aria-hidden="true">
+              <path d="M2 10h36M30 3l8 7-8 7"></path>
+            </svg>
+          </button>
+          <p id="photo-form-status" class="photo-status" role="status"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <span>BLACK ANTS FLYING DISC TEAM</span>
+      <span>每一个瞬间，都是我们共同的飞盘故事</span>
+    </footer>
+  </body>
+</html>
