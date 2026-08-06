@@ -1,4 +1,36 @@
-# BLACK ANTS 飞盘队网站
+<p align="center">
+  <img src="banner.svg" alt="BLACK ANTS Ultimate Frisbee Team" width="100%">
+</p>
+
+<div align="center">
+
+![JavaScript](https://img.shields.io/badge/JavaScript-yellow)
+![CloudBase](https://img.shields.io/badge/CloudBase-blue-00A4FF)
+![License](https://img.shields.io/badge/License-MIT-blue)
+
+**大连理工大学开发区校区黑蚁极限飞盘队 · 官方网站**
+
+[🌐 官网](https://dutultimate.club/) · [📋 项目状态](PROJECT_STATUS.md) · [📖 部署文档](docs/CLOUDBASE_DEPLOYMENT.md)
+
+</div>
+
+
+---
+
+
+## ✨ 功能亮点
+
+| 特性 | 说明 |
+|------|------|
+| 👥 **成员审核系统** | 匿名登录提交资料，管理员审核后公开显示 |
+| 📸 **照片图库** | 队友日常照片上传与发布流程 |
+| 🏆 **首次比赛登记** | 公开成员登记正式比赛经历 |
+| 📱 **二维码管理** | 官网、后台、照片页主题海报二维码生成 |
+| ☁️ **CloudBase 托管** | 腾讯云 CloudBase 公开网站托管与数据持久化 |
+
+
+---
+
 
 原生页面已接入腾讯云 CloudBase，用于公开网站托管、成员资料持久化、头像存储和管理员审核。
 
@@ -41,3 +73,12 @@ npm run cloudbase:deploy
 官网、审核后台、照片上传页和首次比赛登记页的主题海报、标准二维码及下载入口位于 `/qrcodes.html`。
 
 完整开通、部署、备案及运维步骤见 [docs/CLOUDBASE_DEPLOYMENT.md](docs/CLOUDBASE_DEPLOYMENT.md)。
+
+
+---
+
+<div align="center">
+
+**Made with ❤️ by BLACK ANTS**
+
+</div>
