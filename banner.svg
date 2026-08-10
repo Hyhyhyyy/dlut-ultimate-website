@@ -1,101 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 380" width="1280" height="380" role="img" aria-label="BLACK ANTS 飞盘队官网 · 大连理工极限飞盘队">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 380" role="img" aria-label="dlut-ultimate-website" font-family="'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
   <defs>
-    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#0c1706"/>
-      <stop offset="0.55" stop-color="#16290c"/>
-      <stop offset="1" stop-color="#0a1305"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c2410"/>
+      <stop offset="1" stop-color="#143a1a"/>
     </linearGradient>
-    <linearGradient id="beamGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#ecfccb" stop-opacity="0"/>
-      <stop offset="0.5" stop-color="#a3e635" stop-opacity="0.8"/>
-      <stop offset="1" stop-color="#ecfccb" stop-opacity="0"/>
+    <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#84cc16"/>
+      <stop offset="1" stop-color="#ecfccb"/>
     </linearGradient>
-    <radialGradient id="haloGrad" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0" stop-color="#84cc16" stop-opacity="0.5"/>
-      <stop offset="1" stop-color="#84cc16" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="titleGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#bef264"/>
-      <stop offset="1" stop-color="#84cc16"/>
-    </linearGradient>
-    <linearGradient id="discGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#eaffd0"/>
-      <stop offset="1" stop-color="#a3e635"/>
+    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#84cc16" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
     </linearGradient>
   </defs>
-
-  <rect width="1280" height="380" fill="url(#bgGrad)"/>
-
-  <!-- (a) BANNER-WIDE MOTION: lime light sweep across the full width -->
-  <g>
-    <rect x="-220" y="0" width="220" height="380" fill="url(#beamGrad)" opacity="0">
-      <animate attributeName="x" values="-220;1500;-220" dur="8s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0;0.5;0" dur="8s" repeatCount="indefinite"/>
-    </rect>
+  <rect width="1280" height="380" fill="url(#bg)"/>
+  <circle cx="960" cy="190" r="152" fill="#84cc16" opacity="0.07"/>
+  <circle cx="960" cy="190" r="152" fill="none" stroke="#84cc16" stroke-width="2" opacity="0.18"/>
+  <rect x="-220" y="0" width="220" height="380" fill="url(#beam)">
+    <animate attributeName="x" values="-220;1300;-220" dur="7s" repeatCount="indefinite"/>
+  </rect>
+  <g transform="translate(960,190)">
+    <circle r="118" fill="#081a0c" stroke="#84cc16" stroke-width="8"/>
+    <path d="M-70,-46 C-20,-30 20,-30 70,-46" fill="none" stroke="#84cc16" stroke-width="6" opacity="0.7" stroke-linecap="round"/>
+    <ellipse cx="0" cy="14" rx="80" ry="30" fill="#0c2410" stroke="#84cc16" stroke-width="8"/>
+    <ellipse cx="0" cy="14" rx="40" ry="14" fill="none" stroke="#ecfccb" stroke-width="5" opacity="0.6"/>
   </g>
-  <g fill="#d9f99d">
-    <circle cx="0" cy="100" r="2.2" opacity="0.6">
-      <animate attributeName="cx" values="-20;1320" dur="9.5s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="0" cy="295" r="1.8" opacity="0.5">
-      <animate attributeName="cx" values="1320;-20" dur="11.5s" repeatCount="indefinite"/>
-    </circle>
-  </g>
-
-  <!-- (b) TITLE-SURROUND MOTION: pulsing halo + draw-on underline -->
-  <circle cx="298" cy="128" r="132" fill="url(#haloGrad)">
-    <animate attributeName="r" values="116;144;116" dur="4.4s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0.5;0.85;0.5" dur="4.4s" repeatCount="indefinite"/>
+  <circle cx="250" cy="120" r="66" fill="none" stroke="#84cc16" stroke-width="6" opacity="0.22">
+    <animate attributeName="r" values="56;80;56" dur="4.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.34;0.08;0.34" dur="4.5s" repeatCount="indefinite"/>
   </circle>
-
-  <text x="62" y="134" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="48" font-weight="800" fill="url(#titleGrad)">BLACK ANTS</text>
-  <line x1="64" y1="154" x2="300" y2="154" stroke="#84cc16" stroke-width="4" stroke-linecap="round" stroke-dasharray="240" stroke-dashoffset="240">
-    <animate attributeName="stroke-dashoffset" values="240;0;0;240" keyTimes="0;0.5;0.85;1" dur="6s" repeatCount="indefinite"/>
-  </line>
-  <text x="64" y="188" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="18" font-weight="500" fill="#d9f99d">大连理工极限飞盘队官网 · dutultimate.club</text>
-
-  <g font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="15" font-weight="600" fill="#d9f99d">
-    <rect x="64" y="208" width="96" height="30" rx="15" fill="#16290c"/>
-    <text x="84" y="228">球队介绍</text>
-    <rect x="176" y="208" width="96" height="30" rx="15" fill="#16290c"/>
-    <text x="196" y="228">招新战报</text>
-    <rect x="288" y="208" width="96" height="30" rx="15" fill="#16290c"/>
-    <text x="308" y="228">成员名册</text>
-  </g>
-
-  <!-- HERO MOTIF (right): a flying frisbee with a motion trail + roster card + join QR -->
-  <g transform="translate(985,196)">
-    <!-- flight trail -->
-    <path d="M-70,40 C-20,-50 70,-50 110,30 C70,70 -20,70 -70,40 Z" fill="none" stroke="#a3e635" stroke-width="2.5" stroke-dasharray="10 8" opacity="0.5">
-      <animate attributeName="stroke-dashoffset" values="0;-36;0" dur="2.6s" repeatCount="indefinite"/>
-    </path>
-    <!-- flying + spinning disc -->
-    <g>
-      <animateMotion dur="6s" repeatCount="indefinite" path="M-70,40 C-20,-50 70,-50 110,30 C70,70 -20,70 -70,40 Z"/>
-      <g>
-        <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="1.8s" repeatCount="indefinite"/>
-        <ellipse rx="48" ry="16" fill="url(#discGrad)" stroke="#ecfccb" stroke-width="3"/>
-        <ellipse rx="30" ry="10" fill="none" stroke="#65a30d" stroke-width="1.5" opacity="0.7"/>
-        <ellipse rx="12" ry="4" fill="#65a30d" opacity="0.5"/>
-      </g>
-    </g>
-    <!-- roster card -->
-    <g>
-      <animateTransform attributeName="transform" type="translate" values="0 0;0 -6;0 0" dur="4.6s" repeatCount="indefinite"/>
-      <rect x="-150" y="58" width="120" height="78" rx="12" fill="#0f1f08"/>
-      <circle cx="-124" cy="82" r="11" fill="#a3e635"/>
-      <circle cx="-98" cy="82" r="11" fill="#bef264"/>
-      <circle cx="-72" cy="82" r="11" fill="#d9f99d"/>
-      <rect x="-150" y="104" width="120" height="6" rx="3" fill="#3a521c"/>
-      <rect x="-150" y="116" width="86" height="6" rx="3" fill="#3a521c"/>
-    </g>
-    <!-- join QR -->
-    <g transform="translate(120,92)">
-      <rect x="0" y="0" width="44" height="44" rx="6" fill="#f7fee7"/>
-      <g fill="#1a2e0a">
-        <rect x="4" y="4" width="10" height="10"/><rect x="30" y="4" width="10" height="10"/><rect x="4" y="30" width="10" height="10"/>
-        <rect x="18" y="6" width="4" height="4"/><rect x="26" y="14" width="4" height="4"/><rect x="14" y="20" width="4" height="4"/><rect x="22" y="26" width="4" height="4"/><rect x="32" y="22" width="4" height="4"/><rect x="8" y="22" width="4" height="4"/>
-      </g>
-    </g>
+  <text x="70" y="150" font-size="44" font-weight="800" fill="url(#title)">dlut-ultimate-website</text>
+  <text x="72" y="196" font-size="22" fill="#c8e89a" opacity="0.9">黑蚁极限飞盘队 · 球队官网</text>
+  <g font-size="16" font-weight="600">
+    <rect x="72" y="218" width="120" height="34" rx="17" fill="#84cc16" opacity="0.18" stroke="#a3e635" stroke-width="2"/>
+    <text x="132" y="240" fill="#e3fbc0" text-anchor="middle">名册</text>
+    <rect x="204" y="218" width="120" height="34" rx="17" fill="#ecfccb" opacity="0.14" stroke="#ecfccb" stroke-width="2"/>
+    <text x="264" y="240" fill="#f4fce8" text-anchor="middle">招新</text>
   </g>
 </svg>
