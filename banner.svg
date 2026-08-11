@@ -1,41 +1,62 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 380" role="img" aria-label="dlut-ultimate-website" font-family="'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0c2410"/>
-      <stop offset="1" stop-color="#143a1a"/>
+      <stop offset="0" stop-color="#3f6212"/>
+      <stop offset="0.55" stop-color="#65a30d"/>
+      <stop offset="1" stop-color="#84cc16"/>
     </linearGradient>
     <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#84cc16"/>
+      <stop offset="0" stop-color="#bef264"/>
       <stop offset="1" stop-color="#ecfccb"/>
     </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d9f99d"/>
+      <stop offset="1" stop-color="#4d7c0f"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#bef264" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#bef264" stop-opacity="0"/>
+    </radialGradient>
     <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
-      <stop offset="0.5" stop-color="#84cc16" stop-opacity="0.20"/>
+      <stop offset="0.5" stop-color="#bef264" stop-opacity="0.22"/>
       <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
     </linearGradient>
   </defs>
   <rect width="1280" height="380" fill="url(#bg)"/>
-  <circle cx="960" cy="190" r="152" fill="#84cc16" opacity="0.07"/>
-  <circle cx="960" cy="190" r="152" fill="none" stroke="#84cc16" stroke-width="2" opacity="0.18"/>
+  <ellipse cx="980" cy="200" rx="205" ry="170" fill="url(#glow)"/>
+  <circle cx="250" cy="300" r="9" fill="#a3e635" opacity="0.6"/>
+  <circle cx="1120" cy="70" r="11" fill="#ecfccb" opacity="0.55"/>
+  <circle cx="1180" cy="320" r="7" fill="#bef264" opacity="0.6"/>
   <rect x="-220" y="0" width="220" height="380" fill="url(#beam)">
     <animate attributeName="x" values="-220;1300;-220" dur="7s" repeatCount="indefinite"/>
   </rect>
-  <g transform="translate(960,190)">
-    <circle r="118" fill="#081a0c" stroke="#84cc16" stroke-width="8"/>
-    <path d="M-70,-46 C-20,-30 20,-30 70,-46" fill="none" stroke="#84cc16" stroke-width="6" opacity="0.7" stroke-linecap="round"/>
-    <ellipse cx="0" cy="14" rx="80" ry="30" fill="#0c2410" stroke="#84cc16" stroke-width="8"/>
-    <ellipse cx="0" cy="14" rx="40" ry="14" fill="none" stroke="#ecfccb" stroke-width="5" opacity="0.6"/>
+  <g transform="translate(980,190)">
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0 0;0 -16;0 0" dur="3s" repeatCount="indefinite"/>
+      <g>
+        <animateTransform attributeName="transform" type="rotate" values="-7;7;-7" dur="4.2s" repeatCount="indefinite"/>
+        <ellipse cx="0" cy="14" rx="132" ry="44" fill="#3f6212" opacity="0.55"/>
+        <ellipse cx="0" cy="0" rx="132" ry="44" fill="url(#body)" stroke="#a3e635" stroke-width="11"/>
+        <ellipse cx="0" cy="-14" rx="132" ry="44" fill="#84cc16" stroke="#ecfccb" stroke-width="11"/>
+        <ellipse cx="0" cy="-14" rx="96" ry="30" fill="#65a30d" opacity="0.55"/>
+        <circle cx="-36" cy="-16" r="12" fill="#0c2410"/>
+        <circle cx="36" cy="-16" r="12" fill="#0c2410"/>
+        <circle cx="-32" cy="-20" r="4" fill="#ecfccb"/>
+        <circle cx="40" cy="-20" r="4" fill="#ecfccb"/>
+        <path d="M-32,8 Q0,32 32,8" fill="none" stroke="#0c2410" stroke-width="8" stroke-linecap="round"/>
+      </g>
+    </g>
   </g>
-  <circle cx="250" cy="120" r="66" fill="none" stroke="#84cc16" stroke-width="6" opacity="0.22">
-    <animate attributeName="r" values="56;80;56" dur="4.5s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0.34;0.08;0.34" dur="4.5s" repeatCount="indefinite"/>
-  </circle>
+  <line x1="72" y1="170" x2="430" y2="170" stroke="#ecfccb" stroke-width="6" stroke-linecap="round" stroke-dasharray="358" stroke-dashoffset="358">
+    <animate attributeName="stroke-dashoffset" values="358;0;0;358" dur="6s" repeatCount="indefinite"/>
+  </line>
   <text x="70" y="150" font-size="44" font-weight="800" fill="url(#title)">dlut-ultimate-website</text>
-  <text x="72" y="196" font-size="22" fill="#c8e89a" opacity="0.9">黑蚁极限飞盘队 · 球队官网</text>
+  <text x="72" y="196" font-size="22" fill="#c8e89a" opacity="0.92">黑蚁极限飞盘队 · 球队官网</text>
   <g font-size="16" font-weight="600">
-    <rect x="72" y="218" width="120" height="34" rx="17" fill="#84cc16" opacity="0.18" stroke="#a3e635" stroke-width="2"/>
+    <rect x="72" y="218" width="120" height="34" rx="17" fill="#84cc16" opacity="0.20" stroke="#a3e635" stroke-width="2"/>
     <text x="132" y="240" fill="#e3fbc0" text-anchor="middle">名册</text>
-    <rect x="204" y="218" width="120" height="34" rx="17" fill="#ecfccb" opacity="0.14" stroke="#ecfccb" stroke-width="2"/>
+    <rect x="204" y="218" width="120" height="34" rx="17" fill="#ecfccb" opacity="0.16" stroke="#ecfccb" stroke-width="2"/>
     <text x="264" y="240" fill="#f4fce8" text-anchor="middle">招新</text>
   </g>
 </svg>
