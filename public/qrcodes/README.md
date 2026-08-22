@@ -1,5 +1,7 @@
 此目录中的二维码由 `npm run qrcodes:generate` 生成。
 
+- `recruitment-qr-themed.png`：无需填写信息的招新主题海报
+- `recruitment-qr.png`：招新页面标准二维码
 - `website-qr-themed.png`：飞盘队官网主题海报
 - `website-qr.png`：飞盘队官网标准二维码
 - `admin-qr-themed.png`：审核后台主题海报

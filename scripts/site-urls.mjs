@@ -25,3 +25,4 @@ export const DEPLOYMENT_HOST_URL = normalizeBaseUrl(
 export const ADMIN_URL = new URL("admin.html", PUBLIC_SITE_URL).href;
 export const PHOTO_UPLOAD_URL = new URL("photos.html", PUBLIC_SITE_URL).href;
 export const DEBUT_RECORD_URL = new URL("debut.html", PUBLIC_SITE_URL).href;
+export const RECRUITMENT_URL = new URL("recruit.html", DEPLOYMENT_HOST_URL).href;

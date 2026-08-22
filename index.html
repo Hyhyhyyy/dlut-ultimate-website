@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
@@ -69,11 +69,30 @@
                 </button>
                 <button class="text-action" type="button" data-go="2">先看飞盘规则</button>
               </div>
-              <ul class="hero-facts" aria-label="极限飞盘核心特点">
-                <li><strong>7 VS 7</strong><span>标准室外赛制</span></li>
-                <li><strong>10 SEC</strong><span>持盘倒数</span></li>
-                <li><strong>NO REF</strong><span>自我裁决</span></li>
-              </ul>
+              <section class="hero-activity-panel" aria-label="日常活动与比赛安排">
+                <article>
+                  <span class="hero-activity-label">固定活动</span>
+                  <div>
+                    <strong>每周五 17:00–19:00 · 田径场</strong>
+                    <p>休闲传盘、技巧训练与娱乐赛；参与活动并完成合照，可抵扣体育打卡：每次抵 1 次校园跑，每学期最多 10 次。</p>
+                  </div>
+                </article>
+                <article>
+                  <span class="hero-activity-label">灵活约盘</span>
+                  <div>
+                    <strong>课间、午休、课后，想玩就玩</strong>
+                    <p>教学楼旁篮球场；宿舍楼下中心花园晚间约 21:00–22:00，课余随时组队。</p>
+                  </div>
+                </article>
+                <article>
+                  <span class="hero-activity-label">以赛会友</span>
+                  <div>
+                    <strong>定期参加院级、校级比赛</strong>
+                    <p>参赛可获文体积分；平时积极参与训练的同学优先纳入参赛阵容。</p>
+                  </div>
+                </article>
+              </section>
+              <p class="hero-activity-note">体育打卡与文体积分具体以当学期学校、学院相关认定通知为准。</p>
             </div>
 
             <div class="hero-art" aria-label="蓝色飞盘飞向黄色得分区的抽象海报">
@@ -369,7 +388,7 @@
               <div class="gallery-heading-copy">
                 <p>
                   这里记录训练、比赛与团建中的日常瞬间。
-                  每一张照片都由队友分享，并在管理员审核后公开展示。
+                  每一张照片都由队友分享，并在管理员审核后公开展示；点击照片即可查看完整大图。
                 </p>
                 <a class="primary-action gallery-upload-link" href="./photos.html">
                   <span>上传一张照片</span>
@@ -416,6 +435,11 @@
                 真实姓名仅供管理员审核，不会公开；再写下希望展示的昵称。
                 每人只登记一次，姓名与昵称均不可重复；审核通过后，公开名册只展示昵称与公开资料。
               </p>
+              <div class="member-training-gate">
+                <strong>还未参加过线下训练？请先不要填写。</strong>
+                <span>先加入 QQ 群和微信群，参加至少一次线下训练后，再登记加入社团公开名册。</span>
+                <a href="./recruit.html">打开无需填写信息的招新页 <b aria-hidden="true">→</b></a>
+              </div>
 
               <form id="member-form" class="member-form">
                 <div class="form-row">
@@ -512,7 +536,7 @@
                 <p id="member-form-status" class="form-status" role="status"></p>
               </form>
               <a class="debut-record-link" href="./debut.html">
-                <span>已经首次代表社团参加正式比赛？</span>
+                <span>已经参加过正式比赛？</span>
                 <strong>登记首次比赛与入队年份 <b aria-hidden="true">→</b></strong>
               </a>
             </div>
@@ -543,14 +567,34 @@
               <p class="score-kicker">PASS COMPLETE</p>
               <div class="score-word" aria-hidden="true">SCORE</div>
               <h2 id="join-title">这一分，<br />等你来接。</h2>
-              <p>
+              <p class="score-intro">
                 加入大连理工大学开发区校区极限飞盘协会。
                 从第一次训练开始，和我们一起奔跑、传盘，收获默契与友谊。
               </p>
               <div class="join-details">
-                <div><span>面向</span><strong>全校区 · 零基础友好</strong></div>
-                <div><span>内容</span><strong>基础教学 · 训练 · 比赛</strong></div>
+                <div>
+                  <span>固定活动</span>
+                  <p>
+                    <strong>每周五 17:00–19:00 · 田径场</strong>
+                    <small>休闲传盘、技巧训练与娱乐赛；参与活动并完成合照，每次可抵 1 次校园跑，每学期最多 10 次。</small>
+                  </p>
+                </div>
+                <div>
+                  <span>灵活约盘</span>
+                  <p>
+                    <strong>课间、午休与课后随时组队</strong>
+                    <small>教学楼旁篮球场；宿舍楼下中心花园晚间约 21:00–22:00。</small>
+                  </p>
+                </div>
+                <div>
+                  <span>比赛成长</span>
+                  <p>
+                    <strong>院级、校级比赛 · 参赛可获文体积分</strong>
+                    <small>平时积极参与训练的同学优先纳入参赛阵容，以赛会友，一起赛出风采。</small>
+                  </p>
+                </div>
               </div>
+              <p class="final-activity-note">体育打卡与文体积分具体以当学期学校、学院相关认定通知为准。</p>
               <button class="primary-action restart-trigger" type="button" data-go="0">
                 <span>重新开盘</span>
                 <svg viewBox="0 0 44 20" aria-hidden="true">
@@ -575,7 +619,10 @@
               <div class="join-card-copy">
                 <span>BLACK ANTS · SCAN TO JOIN</span>
                 <h3>扫码加入新队友交流群</h3>
-                <p>训练安排、体验活动和队友们的问候都会在群内与你见面。手机可长按上方二维码保存。</p>
+                <p>
+                  未参加过线下训练的同学，请先加入 QQ 群，并按群公告加入微信群；
+                  完成一次线下训练后，再登记加入社团。手机可长按上方二维码保存。
+                </p>
               </div>
               <div class="join-card-foot">
                 <span>BLACK ANTS FLYING DISC TEAM</span>
@@ -601,6 +648,40 @@
         </button>
       </footer>
     </div>
+
+    <dialog
+      id="photo-lightbox"
+      class="photo-lightbox"
+      aria-labelledby="photo-lightbox-title"
+      aria-describedby="photo-lightbox-meta"
+    >
+      <div class="photo-lightbox-shell">
+        <button
+          id="photo-lightbox-close"
+          class="photo-lightbox-close"
+          type="button"
+          aria-label="关闭大图"
+        >
+          <span aria-hidden="true"></span>
+        </button>
+        <figure>
+          <div class="photo-lightbox-stage">
+            <img id="photo-lightbox-image" alt="" referrerpolicy="no-referrer" />
+            <small>点击背景或按 Esc 关闭</small>
+          </div>
+          <figcaption>
+            <div>
+              <span>BLACK ANTS · TEAM MOMENT</span>
+              <strong id="photo-lightbox-title"></strong>
+              <small id="photo-lightbox-meta"></small>
+            </div>
+            <a id="photo-lightbox-original" target="_blank" rel="noreferrer">
+              在新窗口打开原图
+            </a>
+          </figcaption>
+        </figure>
+      </div>
+    </dialog>
 
     <dialog
       id="glossary-dialog"

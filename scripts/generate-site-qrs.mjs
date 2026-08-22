@@ -8,6 +8,7 @@ import {
   DEBUT_RECORD_URL,
   PHOTO_UPLOAD_URL,
   PUBLIC_SITE_URL,
+  RECRUITMENT_URL,
 } from "./site-urls.mjs";
 const outputDirectory = resolve("public", "qrcodes");
 const logoPath = resolve("assets", "team-logo.png");
@@ -54,7 +55,15 @@ const verifyQrBuffer = async (qr, expectedUrl) => {
   }
 };
 
-const createPosterSvg = ({ title, label, url, qrWidth, qrHeight }) => {
+const createPosterSvg = ({
+  title,
+  label,
+  url,
+  subtitle = "扫码打开 · 长按图片保存",
+  detail = "",
+  qrWidth,
+  qrHeight,
+}) => {
   const width = 1080;
   const height = 1350;
   const qrLeft = Math.round((width - qrWidth) / 2);
@@ -65,6 +74,12 @@ const createPosterSvg = ({ title, label, url, qrWidth, qrHeight }) => {
   const panelWidth = qrWidth + panelPadding * 2;
   const panelHeight = qrHeight + panelPadding * 2;
   const copyTop = panelTop + panelHeight + 70;
+  const detailMarkup = detail
+    ? `<text x="64" y="${copyTop + 198}" fill="${colors.cream}"
+          font-family="'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif"
+          font-size="20" font-weight="600">${escapeXml(detail)}</text>`
+    : "";
+  const urlTop = detail ? copyTop + 238 : copyTop + 213;
 
   return {
     qrLeft,
@@ -112,8 +127,9 @@ const createPosterSvg = ({ title, label, url, qrWidth, qrHeight }) => {
           font-size="56" font-weight="900">${escapeXml(title)}</text>
         <text x="64" y="${copyTop + 152}" fill="${colors.cream}"
           font-family="'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif"
-          font-size="24" font-weight="500">扫码打开 · 长按图片保存</text>
-        <text x="64" y="${copyTop + 213}" fill="${colors.white}" opacity=".62"
+          font-size="24" font-weight="500">${escapeXml(subtitle)}</text>
+        ${detailMarkup}
+        <text x="64" y="${urlTop}" fill="${colors.white}" opacity=".62"
           font-family="Arial, sans-serif" font-size="16">${escapeXml(url)}</text>
 
         <circle cx="950" cy="${copyTop + 100}" r="74" fill="none" stroke="${colors.yellow}"
@@ -134,7 +150,15 @@ const createPosterSvg = ({ title, label, url, qrWidth, qrHeight }) => {
   };
 };
 
-const createPoster = async ({ fileStem, label, title, url, logo }) => {
+const createPoster = async ({
+  fileStem,
+  label,
+  title,
+  url,
+  subtitle,
+  detail,
+  logo,
+}) => {
   const qr = await createQrBuffer(url);
   await verifyQrBuffer(qr, url);
   const { width: qrWidth, height: qrHeight } = await sharp(qr).metadata();
@@ -143,7 +167,15 @@ const createPoster = async ({ fileStem, label, title, url, logo }) => {
     throw new Error(`无法读取 ${fileStem} 二维码尺寸。`);
   }
 
-  const poster = createPosterSvg({ title, label, url, qrWidth, qrHeight });
+  const poster = createPosterSvg({
+    title,
+    label,
+    url,
+    subtitle,
+    detail,
+    qrWidth,
+    qrHeight,
+  });
   const logoSize = 102;
   const logoMask = Buffer.from(`
     <svg width="${logoSize}" height="${logoSize}" xmlns="http://www.w3.org/2000/svg">
@@ -180,6 +212,15 @@ const logo = await readFile(logoPath);
 
 await Promise.all([
   createPoster({
+    fileStem: "recruitment-qr",
+    label: "2026 招新",
+    title: "你好，新同学",
+    subtitle: "每周五 17:00–19:00 · 田径场",
+    detail: "QQ群 950881587 · 零基础可来 · 参加一次训练后登记",
+    url: RECRUITMENT_URL,
+    logo,
+  }),
+  createPoster({
     fileStem: "website-qr",
     label: "官方网站",
     title: "把飞盘传给下一位队友",
@@ -203,7 +244,7 @@ await Promise.all([
   createPoster({
     fileStem: "debut-record-qr",
     label: "首次比赛",
-    title: "记录第一次为社团上场",
+    title: "记录第一次正式上场",
     url: DEBUT_RECORD_URL,
     logo,
   }),

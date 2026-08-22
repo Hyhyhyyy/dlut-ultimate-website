@@ -6,6 +6,7 @@ import {
   DEPLOYMENT_HOST_URL,
   PHOTO_UPLOAD_URL,
   PUBLIC_SITE_URL,
+  RECRUITMENT_URL,
 } from "./site-urls.mjs";
 const RULES_URL = "https://www.sport.gov.cn/stzx/n5434/c28603165/content.html";
 const deploymentOrigin = new URL(DEPLOYMENT_HOST_URL).origin;
@@ -85,6 +86,10 @@ const decodeRemoteQr = async (path, expectedUrl) => {
 await Promise.all([
   verifyHtml("", [
     "从第一次接盘到第一次得分",
+    "每周五 17:00–19:00 · 田径场",
+    "教学楼旁篮球场",
+    "每学期最多 10 次",
+    "参赛可获文体积分",
     "在每一次交接中，感受信任的传递",
     'name="realName"',
     'name="displayName"',
@@ -94,17 +99,23 @@ await Promise.all([
     "以第一次来参加训练的日期为准",
     ">届<",
     "TEAM MOMENTS",
+    "点击照片即可查看完整大图",
+    'id="photo-lightbox"',
+    'id="photo-lightbox-image"',
+    "在新窗口打开原图",
     "加入队员名册",
     RULES_URL,
     "飞盘专业术语速查词典",
     "术语与手势速查",
     "WFDF 官方手势原表",
     "登记首次比赛与入队年份",
+    "已经参加过正式比赛？",
     "./debut.html",
   ], [
     "gallery-qr-card",
     "qr-download-link",
     "BLACK-ANTS-QQ群二维码.png",
+    "已经首次代表社团参加正式比赛？",
   ]),
   verifyHtml("admin.html", [
     "管理员登录",
@@ -127,8 +138,38 @@ await Promise.all([
     'name="competitionYear"',
     'name="competitionName"',
     "黑蚁飞盘队",
-  ]),
+    "参加过正式比赛后",
+  ], ["代表社团参加正式比赛"]),
+  verifyHtml(
+    "recruit.html",
+    [
+      "你好，",
+      "大连理工大学开发区极限飞盘协会招新啦",
+      "950881587",
+      "二维码无法识别或失效时",
+      "本招新页面无需填写任何个人信息",
+      '<span class="primary-action scroll-cue">',
+      "下滑查看新生专属内容",
+      '<a class="secondary-action" href="./">或者点击此处进入完整官网</a>',
+      'class="beginner-promise"',
+      "包教包会",
+      "未参加过线下训练的同学",
+      "先加入 QQ 群和微信群",
+      "参加至少一次线下训练后",
+      "每周五 · 田径场",
+      "按群公告加入微信群",
+    ],
+    [
+      "<form",
+      'name="realName"',
+      'name="displayName"',
+      "先加入招新群",
+      "查看活动安排",
+    ],
+  ),
   verifyHtml("qrcodes.html", [
+    "招新简版",
+    "recruitment-qr-themed.png",
     "飞盘队官网",
     "成员审核后台",
     "日常照片上传",
@@ -136,8 +177,11 @@ await Promise.all([
     "admin-qr-themed.png",
     "photo-upload-qr-themed.png",
     "首次比赛登记",
+    "参加过正式比赛的同学",
     "debut-record-qr-themed.png",
   ]),
+  decodeRemoteQr("qrcodes/recruitment-qr.png", RECRUITMENT_URL),
+  decodeRemoteQr("qrcodes/recruitment-qr-themed.png", RECRUITMENT_URL),
   decodeRemoteQr("qrcodes/website-qr.png", PUBLIC_SITE_URL),
   decodeRemoteQr("qrcodes/website-qr-themed.png", PUBLIC_SITE_URL),
   decodeRemoteQr("qrcodes/admin-qr.png", ADMIN_URL),
@@ -150,4 +194,4 @@ await Promise.all([
   get(RULES_URL),
 ]);
 
-console.log("线上页面、术语词典、规则资料和八张二维码校验通过。");
+console.log("线上页面、术语词典、规则资料和十张二维码校验通过。");

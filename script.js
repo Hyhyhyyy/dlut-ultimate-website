@@ -359,6 +359,18 @@ import { glossaryCategories, glossaryEntries } from "./glossary-data.js";
 
     const downloadPhoto = async () => {
       if (!photo.image) return;
+
+      // iOS / iPadOS 的 Safari 不支持程序化下载（anchor 的 download 属性被忽略，
+      // 直接 click 也不会触发保存）。这类设备改为打开灯箱，引导用户长按图片保存到相册。
+      const ua = navigator.userAgent;
+      const isIOS = /iP(hone|ad|od)/.test(ua) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+      if (isIOS) {
+        openPhotoLightbox(photo, downloadBtn);
+        showToast("iOS 请长按图片保存到相册");
+        return;
+      }
+
       downloadBtn.disabled = true;
       downloadBtn.classList.add("is-busy");
       try {
@@ -373,6 +385,8 @@ import { glossaryCategories, glossaryEntries } from "./glossary-data.js";
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = url;
+        link.target = "_blank";
+        link.rel = "noopener";
         const datePart = String(photo.photoDate || "").replace(/-/g, "") || "photo";
         link.download = `black-ants-${datePart}-${photo._id || "photo"}.${extension}`;
         document.body.append(link);
@@ -381,7 +395,9 @@ import { glossaryCategories, glossaryEntries } from "./glossary-data.js";
         URL.revokeObjectURL(url);
         showToast("已开始下载原图。");
       } catch {
-        showToast("下载失败，请稍后重试。");
+        // 兜底：新标签页打开，供右键 / 长按保存
+        window.open(photo.image, "_blank", "noopener");
+        showToast("已打开图片，可右键或长按保存。");
       } finally {
         downloadBtn.disabled = false;
         downloadBtn.classList.remove("is-busy");
