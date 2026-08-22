@@ -63,6 +63,7 @@ const createPosterSvg = ({
   detail = "",
   qrWidth,
   qrHeight,
+  est = "EST. 2024",
 }) => {
   const width = 1080;
   const height = 1350;
@@ -144,7 +145,7 @@ const createPosterSvg = ({
         <text x="64" y="1300" fill="${colors.white}" font-family="Arial, sans-serif"
           font-size="18" font-weight="700" letter-spacing="4">DUT DEVELOPMENT ZONE CAMPUS</text>
         <text x="1016" y="1300" text-anchor="end" fill="${colors.yellow}"
-          font-family="Arial, sans-serif" font-size="18" font-weight="800">EST. 2024</text>
+          font-family="Arial, sans-serif" font-size="18" font-weight="800">${escapeXml(est)}</text>
       </svg>
     `),
   };
@@ -158,6 +159,7 @@ const createPoster = async ({
   subtitle,
   detail,
   logo,
+  est,
 }) => {
   const qr = await createQrBuffer(url);
   await verifyQrBuffer(qr, url);
@@ -175,6 +177,7 @@ const createPoster = async ({
     detail,
     qrWidth,
     qrHeight,
+    est,
   });
   const logoSize = 102;
   const logoMask = Buffer.from(`
@@ -213,6 +216,7 @@ const logo = await readFile(logoPath);
 await Promise.all([
   createPoster({
     fileStem: "recruitment-qr",
+    est: "EST. 2021",
     label: "2026 招新",
     title: "你好，新同学",
     subtitle: "每周五 17:00–19:00 · 田径场",
