@@ -1,4 +1,4 @@
-﻿import {
+import {
   callMemberApi,
   ensureAnonymousSession,
   isCloudConfigured,
@@ -30,6 +30,12 @@ import { glossaryCategories, glossaryEntries } from "./glossary-data.js";
   const footerLabel = document.querySelector("#footer-label");
   const toast = document.querySelector("#toast");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const photoLightbox = document.querySelector("#photo-lightbox");
+  const photoLightboxClose = document.querySelector("#photo-lightbox-close");
+  const photoLightboxImage = document.querySelector("#photo-lightbox-image");
+  const photoLightboxTitle = document.querySelector("#photo-lightbox-title");
+  const photoLightboxMeta = document.querySelector("#photo-lightbox-meta");
+  const photoLightboxOriginal = document.querySelector("#photo-lightbox-original");
   const glossaryDialog = document.querySelector("#glossary-dialog");
   const glossaryOpen = document.querySelector("#glossary-open");
   const glossaryClose = document.querySelector("#glossary-close");
@@ -132,7 +138,7 @@ import { glossaryCategories, glossaryEntries } from "./glossary-data.js";
       return;
     }
 
-    if (glossaryDialog.open) return;
+    if (glossaryDialog.open || photoLightbox.open) return;
     if (isEditing) return;
 
     if (event.key === "ArrowRight" || event.key === "PageDown") {
@@ -289,29 +295,112 @@ import { glossaryCategories, glossaryEntries } from "./glossary-data.js";
   const photoGallery = document.querySelector("#photo-gallery");
   const galleryPhotoCount = document.querySelector("#gallery-photo-count");
   let galleryPhotos = [];
+  let photoLightboxTrigger = null;
 
   const formatGalleryDate = (value) => {
     const parts = String(value || "").split("-");
     return parts.length === 3 ? `${parts[0]}.${parts[1]}.${parts[2]}` : "日期待补充";
   };
 
+  const openPhotoLightbox = (photo, trigger) => {
+    photoLightboxTrigger = trigger;
+    photoLightboxImage.src = photo.image;
+    photoLightboxImage.alt = photo.caption;
+    photoLightboxTitle.textContent = photo.caption;
+    photoLightboxMeta.textContent = `${formatGalleryDate(photo.photoDate)} · ${photo.creditName}`;
+    photoLightboxOriginal.href = photo.image;
+    photoLightbox.showModal();
+    document.body.classList.add("has-open-dialog");
+  };
+
+  photoLightboxClose.addEventListener("click", () => photoLightbox.close());
+  photoLightbox.addEventListener("click", (event) => {
+    if (event.target === photoLightbox) photoLightbox.close();
+  });
+  photoLightbox.addEventListener("close", () => {
+    document.body.classList.remove("has-open-dialog");
+    photoLightboxImage.removeAttribute("src");
+    photoLightboxOriginal.removeAttribute("href");
+    photoLightboxTrigger?.focus({ preventScroll: true });
+    photoLightboxTrigger = null;
+  });
+
   const createGalleryPhotoCard = (photo) => {
     const card = document.createElement("article");
+    const media = document.createElement("div");
     const image = document.createElement("img");
+    const openButton = document.createElement("button");
+    const downloadBtn = document.createElement("button");
+    const openLabel = document.createElement("span");
     const copy = document.createElement("div");
     const caption = document.createElement("strong");
     const meta = document.createElement("span");
 
     card.className = "gallery-photo-card";
-    copy.className = "gallery-photo-copy";
+    media.className = "gallery-photo-media";
+
     image.src = photo.image;
     image.alt = photo.caption;
     image.loading = "lazy";
+    image.decoding = "async";
     image.referrerPolicy = "no-referrer";
+
+    openButton.type = "button";
+    openButton.className = "gallery-photo-open";
+    openButton.setAttribute("aria-label", `查看大图：${photo.caption}`);
+    openButton.addEventListener("click", () => openPhotoLightbox(photo, openButton));
+
+    downloadBtn.type = "button";
+    downloadBtn.className = "gallery-photo-download";
+    downloadBtn.setAttribute("aria-label", `下载照片：${photo.caption}`);
+    downloadBtn.title = "下载原图";
+    downloadBtn.innerHTML =
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>';
+
+    const downloadPhoto = async () => {
+      if (!photo.image) return;
+      downloadBtn.disabled = true;
+      downloadBtn.classList.add("is-busy");
+      try {
+        const response = await fetch(photo.image);
+        if (!response.ok) throw new Error("network");
+        const blob = await response.blob();
+        const extension = photo.image.startsWith("data:image/png")
+          ? "png"
+          : photo.image.startsWith("data:image/webp")
+            ? "webp"
+            : "jpg";
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        const datePart = String(photo.photoDate || "").replace(/-/g, "") || "photo";
+        link.download = `black-ants-${datePart}-${photo._id || "photo"}.${extension}`;
+        document.body.append(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        showToast("已开始下载原图。");
+      } catch {
+        showToast("下载失败，请稍后重试。");
+      } finally {
+        downloadBtn.disabled = false;
+        downloadBtn.classList.remove("is-busy");
+      }
+    };
+    downloadBtn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      downloadPhoto();
+    });
+
+    openLabel.className = "gallery-photo-open-label";
+    openLabel.textContent = "点击查看大图";
+    copy.className = "gallery-photo-copy";
     caption.textContent = photo.caption;
     meta.textContent = `${formatGalleryDate(photo.photoDate)} · ${photo.creditName}`;
+
+    media.append(image, openButton, downloadBtn, openLabel);
     copy.append(caption, meta);
-    card.append(image, copy);
+    card.append(media, copy);
     return card;
   };
 
@@ -476,7 +565,7 @@ import { glossaryCategories, glossaryEntries } from "./glossary-data.js";
     const note = document.createElement("p");
     note.className = "roster-team-note";
     note.textContent =
-      "代表社团参加过正式比赛，即视为加入开发区校区黑蚁飞盘队；队员将拥有更多比赛机会与精美队服。";
+      "参加过正式比赛的同学，即视为加入开发区校区黑蚁飞盘队；队员将拥有更多比赛机会与精美队服。";
     return note;
   };
 
@@ -508,7 +597,7 @@ import { glossaryCategories, glossaryEntries } from "./glossary-data.js";
     const content = [
       createRosterGroupHeader(
         "黑蚁飞盘队",
-        "首次代表社团参加正式比赛的队员",
+        "参加过正式比赛的同学",
         teamMembers.length,
         true,
       ),
