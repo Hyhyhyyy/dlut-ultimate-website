@@ -1694,14 +1694,6 @@ h2,
   background: var(--paper);
 }
 
-.gallery-photo-card img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  background: rgba(255, 255, 255, 0.08);
-}
-
 .gallery-photo-copy {
   display: grid;
   gap: 7px;
@@ -1720,6 +1712,61 @@ h2,
   color: var(--muted);
   font-size: 9px;
   line-height: 1.5;
+}
+
+.gallery-photo-image-wrap {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.gallery-photo-image-wrap img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.gallery-photo-download {
+  position: absolute;
+  inset: auto 10px 10px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.gallery-photo-card:hover .gallery-photo-download,
+.gallery-photo-download:focus-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-photo-download:hover {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.gallery-photo-download svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
 }
 
 .gallery-message {

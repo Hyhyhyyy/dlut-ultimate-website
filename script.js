@@ -297,21 +297,53 @@ import { glossaryCategories, glossaryEntries } from "./glossary-data.js";
 
   const createGalleryPhotoCard = (photo) => {
     const card = document.createElement("article");
+    const imageWrap = document.createElement("div");
     const image = document.createElement("img");
+    const downloadBtn = document.createElement("button");
     const copy = document.createElement("div");
     const caption = document.createElement("strong");
     const meta = document.createElement("span");
 
     card.className = "gallery-photo-card";
-    copy.className = "gallery-photo-copy";
+    imageWrap.className = "gallery-photo-image-wrap";
+    downloadBtn.type = "button";
+    downloadBtn.className = "gallery-photo-download";
+    downloadBtn.setAttribute("aria-label", "下载这张照片");
+    downloadBtn.title = "下载原图";
+    downloadBtn.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>`;
     image.src = photo.image;
     image.alt = photo.caption;
     image.loading = "lazy";
     image.referrerPolicy = "no-referrer";
+    imageWrap.append(image, downloadBtn);
+
+    const downloadPhoto = async () => {
+      if (!photo.image) return;
+      try {
+        const response = await fetch(photo.image);
+        const blob = await response.blob();
+        const extension =
+          photo.image.startsWith("data:image/png") ? "png" :
+          photo.image.startsWith("data:image/webp") ? "webp" : "jpg";
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        const datePart = String(photo.photoDate || "").replace(/-/g, "") || "photo";
+        a.download = `black-ants-${datePart}-${photo._id || "photo"}.${extension}`;
+        document.body.append(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      } catch {
+        showToast("下载失败，请稍后重试。");
+      }
+    };
+
+    downloadBtn.addEventListener("click", downloadPhoto);
     caption.textContent = photo.caption;
     meta.textContent = `${formatGalleryDate(photo.photoDate)} · ${photo.creditName}`;
     copy.append(caption, meta);
-    card.append(image, copy);
+    card.append(imageWrap, copy);
     return card;
   };
 
