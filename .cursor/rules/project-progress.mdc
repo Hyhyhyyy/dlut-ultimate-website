@@ -1,0 +1,17 @@
+---
+description: 延续黑蚁飞盘队网站进度并维护部署状态
+alwaysApply: true
+---
+
+# 项目持续迭代规则
+
+- 开始修改前先阅读 `PROJECT_STATUS.md`、`README.md` 和相关部署文档。
+- 以 `PROJECT_STATUS.md` 记录的线上版本、CloudBase 环境和待办为当前事实来源。
+- 不要更换 CloudBase 环境、集合名称、长期域名或管理员配置，除非用户明确要求。
+- 保留 CloudBase 默认域名，确保旧二维码持续有效。
+- 二维码目标地址统一从 `scripts/site-urls.mjs` 读取。
+- 真实姓名、UID、密钥、密码和首次比赛备注不得出现在公开接口或公开页面。
+- 成员、照片和首次比赛内容必须经管理员审核后才能公开。
+- 每次重要迭代后更新 `PROJECT_STATUS.md` 的日期、版本、功能、待办和验收结果。
+- 部署前运行测试与构建；部署后运行 `npm run verify:live`。
+- 不把 `.env`、管理员凭据或数据库导出提交到版本控制。
